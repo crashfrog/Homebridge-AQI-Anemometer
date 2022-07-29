@@ -1,0 +1,3 @@
+[submodule "Raspi-Weather-Station-Housing"]
+	path = Raspi-Weather-Station-Housing
+	url = https://github.com/crashfrog/Raspi-Weather-Station-Housing.git
