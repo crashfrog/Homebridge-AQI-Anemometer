@@ -8,10 +8,10 @@ setup(
     author_email="crashfrog@gmail.com",
     python_requires='>=3.7',
     entry_points={
-        'console_scripts': ["aqi=aqi.aqi:cli"]
+        'console_scripts': ["aqi=station.aqi:cli", 'station=station.anemometer:cli']
     },
     install_requirements=requirements,
-    name='aqi',
+    name='station',
     version='0.1.0',
     zip_safe=False
 )
