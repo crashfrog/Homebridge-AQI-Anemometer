@@ -25,14 +25,14 @@ SPEED_POLLING_INTERVAL = 10 # seconds
 
 cnt = 0
 
-r = 8 # cm, the radius of the spinner
+r = 10 # cm, the radius of the spinner
 rpm = 0
 
 c = 2 * r * math.pi # cm
 
 struct = {}
 
-def compute(*a, **k):
+def compute(rpm, pi=SPEED_POLLING_INTERVAL):
     return dict(kph=rpm * c * 60 / 100000,
              mph=(rpm * c * 60 / 100000) * 0.621371,
              mps=rpm * c / 6000,
@@ -42,19 +42,18 @@ def compute(*a, **k):
 def count(*a, **k):
     global cnt
     cnt = cnt + 1
-    print("tick")
+    # print("tick")
 
 def interval(*a, **k):
     global rpm, cnt, struct
     while True:
         struct = aqi.get()
         rpm = cnt * (60 / SPEED_POLLING_INTERVAL)
+        struct['meterological']['windspeed'] = compute(rpm)
         cnt = 0
         sleep(SPEED_POLLING_INTERVAL)
 
 def serve():
-    global struct
-    struct['meterological']['windspeed'] = compute()
     return struct
 
 
